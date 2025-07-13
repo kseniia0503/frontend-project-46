@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import { genDiff } from '../index.js'
+import genDiff from '../index.js'
 
 program
   .name('gendiff')
@@ -11,7 +11,7 @@ program
   .action((filepath1, filepath2) => {
 try {
       const result = genDiff(filepath1, filepath2)
-      console.log('Comparison result:', result)
+      console.log(result)
     } catch (error) {
       console.error('Error:', error.message)
       process.exit(1)
@@ -19,4 +19,5 @@ try {
   })
 
 program.parse(process.argv)
+
 
