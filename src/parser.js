@@ -6,5 +6,3 @@ export const parseFile = (filepath) => {
   const content = fs.readFileSync(absolutePath, 'utf-8')
   return JSON.parse(content)
 }
-
-

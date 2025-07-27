@@ -9,15 +9,14 @@ program
   .version('1.0.0')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-try {
+    try {
       const result = genDiff(filepath1, filepath2)
       console.log(result)
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error.message)
       process.exit(1)
     }
   })
 
 program.parse(process.argv)
-
-

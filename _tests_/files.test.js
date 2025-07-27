@@ -1,14 +1,31 @@
-const { test, expect } = require('@jest/globals')
-const fs = require('fs')
-const path = require('path')
-const genDiff = require('../src/diff')
+/* eslint-env jest */
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
+import { genDiff } from '../src/diff.js'
 
-test('compare flat JSON files', () => {
-  const file1 = getFixturePath('file1.json')
-  const file2 = getFixturePath('file2.json')
-  const expected = fs.readFileSync(getFixturePath('expected.txt'), 'utf-8').trim()
-  
-  expect(genDiff(file1, file2)).toEqual(expected)
+describe('JSON comparison', () => {
+  test('should return correct text diff for flat JSON files', () => {
+    const file1 = {
+      follow: false,
+      host: 'hexlet.io',
+      proxy: '123.234.53.22',
+      timeout: 50,
+    }
+
+    const file2 = {
+      host: 'hexlet.io',
+      timeout: 20,
+      verbose: true,
+    }
+    const expectedDiff = [
+      '  - follow: false',
+      '    host: hexlet.io',
+      '  - proxy: 123.234.53.22',
+      '  - timeout: 50',
+      '  + timeout: 20',
+      '  + verbose: true',
+    ].join('\n');
+
+    const actualDiff = genDiff(file1, file2)
+    expect(actualDiff).toBe(expectedDiff)
+  })
 })
