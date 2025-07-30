@@ -1,0 +1,10 @@
+'use strict';
+
+module.exports = {
+  extends: 'airbnb-base',
+  rules: {
+    'no-unused-vars': 'warn',
+    'linebreak-style': 'off'
+  }
+}
+

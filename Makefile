@@ -1,5 +1,5 @@
 lint:
-	npx eslint . --ext .js
+	npx eslint .
 test:
 	npm test
 
